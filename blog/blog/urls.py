@@ -17,12 +17,23 @@ from django.contrib import admin
 from django.urls import path
 
 from posts.views import posts_index, search_by_title, search_by_mainuser
-from main.views import main_index
+from profiles.views import profiles_index
+from django.conf import settings
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', posts_index),
-    path('main', main_index),
     path('title/', search_by_title),
-    path('user/', search_by_mainuser)
+    path('user/', search_by_mainuser),
+    path('profiles', profiles_index)
 ]
+
+
+if settings.DEBUG:
+    from django.conf.urls.static import static
+    from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+
+    # Serve static and media files from development server
+    urlpatterns += staticfiles_urlpatterns()
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

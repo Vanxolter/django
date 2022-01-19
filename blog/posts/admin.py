@@ -11,6 +11,7 @@ class PostAdmin(admin.ModelAdmin):
     readonly_fields = ("created_at",)
     search_fields = ("title", "slug", "text")
 
+
 @admin.register(Tags)
 class TagsAdmin(admin.ModelAdmin):
     list_display = ('title',)
