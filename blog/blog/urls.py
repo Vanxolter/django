@@ -19,14 +19,15 @@ from django.urls import path
 from posts.views import posts_index, search_by_title, search_by_mainuser
 from profiles.views import profiles_index
 from django.conf import settings
-
+from blog.views import register
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', posts_index),
     path('title/', search_by_title),
     path('user/', search_by_mainuser),
-    path('profiles', profiles_index)
+    path('profiles', profiles_index),
+    path('register/', register)
 ]
 
 
