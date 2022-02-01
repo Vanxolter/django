@@ -10,32 +10,23 @@ logger = logging.getLogger(__name__)
 
 
 def main(request):
-    return render(request, "main.html")
+    posts = Post.objects.all()
+    return render(request, "main.html", {"posts": posts})
 
 
-def posts_index(request):
-    result = ""
-    author_name = request.GET.get("author", "maksim")
-    for x in Post.objects.filter(author__username=author_name).order_by("-id"):
-        result += f"<div style='border: 2px solid black'>"
-        result += f"<h1>{x.title} #{x.id}</h1>"
-        result += f"<div>{x.text}</div>"
-        result += f"</div></br>"
+def post(request):
+    posten = Post.objects.filter(id=id)
+    return render(request, "one_post.html", {"post": posten})
 
 
 def add_post(request):
-    if request.method == "POST":
-        form = PostForm(request.POST)
-        if form.is_valid():
-            logger.info(form.cleaned_data)
-            post = Post(
-                author=request.user,
-                title=form.cleaned_data['title'],
-                image=form.cleaned_data['image'],
-                slug=form.cleaned_data['slug'],
-                text=form.cleaned_data['text'])
-            post.save()
-            return redirect("/")
-    else:
-        form = PostForm()
-    return render(request, "add_posts.html", {"form": form})
+    if request.user.is_authenticated:
+        if request.method == "POST":
+            form = PostForm(request.POST, request.FILES)
+            if form.is_valid():
+                Post.objects.create(author=request.user, **form.cleaned_data)
+                return redirect("/main/")
+        else:
+            form = PostForm()
+        return render(request, "add_posts.html", {"form": form})
+    return HttpResponse("You don't authenticated!")

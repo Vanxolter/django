@@ -8,5 +8,6 @@
         {% csrf_token %}
         {{ form|crispy }}
         <button type="submit" class="save btn btn-primary">Save</button>
+        <a href="/main/" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Назад на главную</a>
     </form>
 {% endblock %}

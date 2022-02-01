@@ -1,0 +1,12 @@
+<div class="card note">
+    <div class="container">
+        <span class="border border-primary">
+        <div class="card-body">
+            <h5 class="card-title">{{ post.title }}</h5>
+            <p class="card-text">Автор -{{ post.author.first_name }}</p>
+            <p class="card-time">{{ post.created_at }}</p>
+            <p class="card-text">{{ post.text }}</p>
+        </div>
+        </span>
+    </div>
+</div>

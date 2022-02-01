@@ -4,6 +4,15 @@
 
 
 {% block content %}
-    <h1>Главная</h1>
-    <button type="submit" class="save btn btn-primary">Создать пост?</button>
+    <a href="/addpost/" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Добавить пост</a>
+    <br><br>
+    <div class="container">
+            <div class="row">
+                {% for post in posts %}
+                    <div class="container">
+                        {% include "post.html" %}
+                    </div>
+                {% endfor %}
+            </div>
+    </div>
 {% endblock %}

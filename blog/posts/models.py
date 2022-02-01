@@ -3,7 +3,7 @@ from django.conf import settings
 
 
 class Post(models.Model):
-    author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete = models.CASCADE)
+    author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete = models.CASCADE, related_name="posts")
     title = models.CharField(max_length=200)
     image = models.ImageField(blank=True, null=True)
     slug = models.SlugField()
@@ -15,3 +15,5 @@ class Tags(models.Model):
     title = models.CharField(max_length=100)
     posts = models.ManyToManyField(Post)
 
+class Commentaries(models.Model):
+    ...
