@@ -1,5 +1,6 @@
 from django.db import models
 from django.conf import settings
+from django.contrib.auth.models import User
 
 
 class Post(models.Model):
@@ -14,6 +15,3 @@ class Post(models.Model):
 class Tags(models.Model):
     title = models.CharField(max_length=100)
     posts = models.ManyToManyField(Post)
-
-class Commentaries(models.Model):
-    ...

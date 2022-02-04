@@ -16,17 +16,17 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
-from posts.views import add_post, main, post
+from posts.views import add_post, main, post_view
 from django.conf import settings
 from blog.views import register, authorization
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', authorization),
-    path('register/', register),
-    path('main/', main),
-    path('addpost/', add_post, name= 'add_post'),
-    path('post/', post),
+    path('register/', register, name= 'register'),
+    path('main/', main, name= 'home'),
+    path('posts/add/', add_post, name= 'post_add'),
+    path('post/<str:slug>/', post_view, name= 'post_view'),
     path("api/", include("api.urls", namespace="api")),
 ]
 

@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'crispy_forms',
     'crispy_bootstrap5',
     'posts',
+    'commentaries'
 ]
 
 MIDDLEWARE = [
@@ -134,7 +135,7 @@ STATICFILES_FINDERS = [
 
 STATICFILES_DIRS = [BASE_DIR / "static"]
 
-STATIC_ROOT = "/home/maksim/projects/django/blog/"
+STATIC_ROOT = ""
 STATIC_URL = "/static/"
 
 MEDIA_ROOT = BASE_DIR / "media"
@@ -151,6 +152,7 @@ LOGGING = {
     'handlers': {
         'console': {
             'class': 'logging.StreamHandler',
+            'level': 'INFO',
         },
     },
     'root': {
