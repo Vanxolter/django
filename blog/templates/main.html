@@ -4,11 +4,19 @@
 
 
 {% block content %}
-      <h1>Your posts</h1>
-  {% if not posts %}
-    <b>You haven't added any posts yet.</b><br>
-  {% endif %}
-    <a href="{% url "post_add" %}" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Добавить пост</a>
+    <div class="container">
+        <h1>Мои записи</h1>
+    </div>
+    {% if request.user.is_anonymous %}
+        <b>Для добавления поста вам необходимо войти в систему</b>
+        <a href="{% url "login" %}" class="btn btn-primary btn-lg active" role="button" disabled>Войти в систему</a><br>
+        <br>
+    {% elif request.user.is_authenticated %}
+        {% if not posts %}
+            <b>У вас нет записей, вы хотите создать вашу первую запись?</b><br>
+        {% endif %}
+        <a href="{% url "post_add" %}" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Создать запись</a><br><br>
+    {% endif %}
 
   <div class="container posts">
     <div class="row">
@@ -22,8 +30,12 @@
               <h5 class="card-title">{{ post.title }}</h5>
               <p class="card-text">
                 {{ post.text }}
-                <a href="{% url "post_view" post.slug %}">Go to post</a>
               </p>
+              <a href="{% url "post_view" post.slug %}" class="btn btn-primary btn-lg active">Открыть запись</a><br>
+                {% if request.user == post.author %}
+                    <a href="{% url "delete_post" post.id %}" class="btn btn-danger btn-sm" role="button"
+                       aria-pressed="true"> Удалить запись</a>
+                {% endif %}
             </div>
           </div>
         </div>

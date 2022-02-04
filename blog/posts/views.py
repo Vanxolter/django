@@ -1,6 +1,6 @@
 from django.contrib.auth.models import User
 from django.http import HttpResponse
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 import logging
 
 from posts.forms import PostForm
@@ -10,7 +10,8 @@ logger = logging.getLogger(__name__)
 
 
 def main(request):
-    posts = Post.objects.filter(author=request.user).order_by("-id")
+    '''posts = Post.objects.filter(author=request.user).order_by("-id")''' # Если я хочу вдеть посты АВТОРИЗОВАННОГО юзера
+    posts = Post.objects.all # Если я хочу видеть посты ВСЕХ юзеров
     return render(request, "main.html", {"posts": posts})
 
 
@@ -29,4 +30,11 @@ def add_post(request):
         else:
             form = PostForm()
         return render(request, "add_posts.html", {"form": form})
-    return HttpResponse("You don't authenticated!")
+    return redirect('home')
+
+
+def delete_post(request, note_id):
+    note = get_object_or_404(Post, id=note_id)
+    logger.info(f"Note with id = {note}, successfully deleted!")
+    note.delete()
+    return redirect('home')

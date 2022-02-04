@@ -1,4 +1,4 @@
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import render, redirect, HttpResponse
 import logging
 from blog.forms import RegisterForm, Authorization
@@ -20,7 +20,7 @@ def register(request):
             )
             user.set_password(form.cleaned_data['password'])
             user.save()
-            return redirect("/main")
+            return redirect("home")
     else:
         form = RegisterForm()
     return render(request, "register.html", {"form": form})
@@ -31,13 +31,13 @@ def authorization(request):
         form = Authorization(request.POST)
         if form.is_valid():
             logger.info(form.cleaned_data)
-            email=form.cleaned_data['email']
-            password=form.cleaned_data['password']
+            email = form.cleaned_data['email']
+            password = form.cleaned_data['password']
             user = authenticate(request, username=email, password=password)
             if user is not None:
                 if user.is_active:
                     login(request, user)
-                    return redirect("/main")
+                    return redirect("home")
             else:
                 return HttpResponse('Аккаунта не существует')
     elif '_reg' in request.POST:
@@ -45,3 +45,8 @@ def authorization(request):
     else:
         form = Authorization()
         return render(request, "authorization.html", {"form": form})
+
+
+def logout_view(request):
+    logout(request)
+    return redirect("/")

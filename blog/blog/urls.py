@@ -16,18 +16,20 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
-from posts.views import add_post, main, post_view
+from posts.views import add_post, main, post_view, delete_post
 from django.conf import settings
-from blog.views import register, authorization
+from blog.views import register, authorization, logout_view
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', authorization),
-    path('register/', register, name= 'register'),
-    path('main/', main, name= 'home'),
-    path('posts/add/', add_post, name= 'post_add'),
-    path('post/<str:slug>/', post_view, name= 'post_view'),
-    path("api/", include("api.urls", namespace="api")),
+    path('', authorization, name= 'login'),                               # АВТОРИЗАЦИЯ
+    path('register/', register, name= 'register'),                        # РЕГИСТРАЦИЯ
+    path('main/', main, name= 'home'),                                    # ДОМАШНЯЯ СТРАНИЦА
+    path('posts/add/', add_post, name= 'post_add'),                       # СОЗДАНИЕ ПОСТА
+    path('post/<str:slug>/', post_view, name= 'post_view'),               # ПРОСМОТР ОТДЕЛЬНОГО ПОСТА
+    path("api/", include("api.urls", namespace="api")),                   # АПИ
+    path("delete/<int:note_id>/", delete_post, name="delete_post"),       # УДАЛЕНИЕ ПОСТА
+    path('logouthtml/', logout_view, name='logout'),                      # ВЫХОД ИЗ ПРОФИЛЯ
 ]
 
 
