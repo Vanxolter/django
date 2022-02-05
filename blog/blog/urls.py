@@ -21,15 +21,22 @@ from django.conf import settings
 from blog.views import register, authorization, logout_view
 
 urlpatterns = [
+    # ПРОФИЛЬ
     path('admin/', admin.site.urls),
     path('', authorization, name= 'login'),                               # АВТОРИЗАЦИЯ
     path('register/', register, name= 'register'),                        # РЕГИСТРАЦИЯ
+    path('logouthtml/', logout_view, name='logout'),                      # ВЫХОД ИЗ ПРОФИЛЯ
     path('main/', main, name= 'home'),                                    # ДОМАШНЯЯ СТРАНИЦА
+
+    # ПОСТЫ
     path('posts/add/', add_post, name= 'post_add'),                       # СОЗДАНИЕ ПОСТА
     path('post/<str:slug>/', post_view, name= 'post_view'),               # ПРОСМОТР ОТДЕЛЬНОГО ПОСТА
-    path("api/", include("api.urls", namespace="api")),                   # АПИ
     path("delete/<int:note_id>/", delete_post, name="delete_post"),       # УДАЛЕНИЕ ПОСТА
-    path('logouthtml/', logout_view, name='logout'),                      # ВЫХОД ИЗ ПРОФИЛЯ
+
+
+
+    # API
+    path("api/", include("api.urls", namespace="api")),                   # АПИ
 ]
 
 
