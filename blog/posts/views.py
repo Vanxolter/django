@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
 import logging
 
+from comments.models import Commentaries
 from posts.forms import PostForm
 from posts.models import Post
 
@@ -17,7 +18,8 @@ def main(request):
 
 def post_view(request, slug):
     post = Post.objects.get(slug=slug)
-    return render(request, "view.html", {"post": post})
+    comments = Commentaries.objects.filter(post=post) # Отображение комментариев только под теми постами к которым они были написаны
+    return render(request, "view.html", {"post": post, "comments": comments})
 
 
 def add_post(request):
@@ -33,8 +35,8 @@ def add_post(request):
     return redirect('home')
 
 
-def delete_post(request, note_id):
-    note = get_object_or_404(Post, id=note_id)
-    logger.info(f"Note with id = {note}, successfully deleted!")
-    note.delete()
+def delete_post(request, post_id):
+    post = get_object_or_404(Post, id=post_id)
+    logger.info(f"Note with id = {post}, successfully deleted!")
+    post.delete()
     return redirect('home')

@@ -16,6 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
+from comments.views import add_comments
 from posts.views import add_post, main, post_view, delete_post
 from django.conf import settings
 from blog.views import register, authorization, logout_view
@@ -31,9 +32,9 @@ urlpatterns = [
     # ПОСТЫ
     path('posts/add/', add_post, name= 'post_add'),                       # СОЗДАНИЕ ПОСТА
     path('post/<str:slug>/', post_view, name= 'post_view'),               # ПРОСМОТР ОТДЕЛЬНОГО ПОСТА
-    path("delete/<int:note_id>/", delete_post, name="delete_post"),       # УДАЛЕНИЕ ПОСТА
+    path("delete/<int:post_id>/", delete_post, name="delete_post"),       # УДАЛЕНИЕ ПОСТА
 
-
+    path('addcomment/<str:slug>', add_comments, name='comments_add'),              # СОЗДАНИЕ КОММЕНТА
 
     # API
     path("api/", include("api.urls", namespace="api")),                   # АПИ

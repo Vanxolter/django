@@ -2,6 +2,8 @@
 {% load crispy_forms_filters %}
 
 {% block content %}
+
+    <!-- БЛОК САМОГО ПОСТА -->
     <div class="container">
         <div class="card">
             {% if post.image %}
@@ -13,4 +15,32 @@
             </div>
         </div>
     </div>
+<br><br>
+
+    <div class="col-4">
+        {% include "add_comments.html" %}
+    </div>
+<br><br>
+
+    <!-- Поле комментариев -->
+  <div class="container comments">
+          <h1>Комментарии</h1>
+    <div class="row">
+      {% for comment in comments %}
+        <div class="container">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">{{ comment.name }}</h5>
+                <p class="card-text">
+                    {{ comment.created }}
+                </p>
+                <p class="card-text">
+                    {{ comment.body }}
+                </p>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
 {% endblock %}
