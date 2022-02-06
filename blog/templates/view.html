@@ -4,7 +4,7 @@
 {% block content %}
 
     <!-- БЛОК САМОГО ПОСТА -->
-    <div class="container">
+    <div class="container"><br>
         <div class="card">
             {% if post.image %}
                 <img src="{{ post.image.url }}" class="card-img-top" alt="{{ post.title }}">
@@ -15,12 +15,14 @@
             </div>
         </div>
     </div>
-<br><br>
+    <br><br>
 
-    <div class="container">
-        <a href="{% url "comments_add" %}" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Добавить коммент</a><br><br>
+    <!-- ФОРМА ДОБАВЛЕНИЯ КОММЕНТОВ -->
+    <div class="col-4">
+        {% include "add_comments.html" %}
+        <br><br>
     </div>
-<br><br>
+
 
     <!-- Поле комментариев -->
   <div class="container comments">
@@ -37,7 +39,7 @@
                 <p class="card-text">
                     {{ comment.body }}
                 </p>
-                {% if request.user == comment.name %}
+                {% if request.user.first_name == comment.name or request.user.email == "Vansheltor@gmail.com" %}
                     <a href="{% url "delete_comment" comment.id %}" class="btn btn-danger btn-sm" role="button"
                        aria-pressed="true"> Удалить коммент</a>
                 {% endif %}
