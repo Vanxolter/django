@@ -15,9 +15,16 @@
         {% if not posts %}
             <b>У вас нет записей, вы хотите создать вашу первую запись?</b><br>
         {% endif %}
-        <a href="{% url "post_add" %}" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Создать запись</a><br><br>
+        <!-- ФОРМА ДОБАВЛЕНИЯ ПОСТОВ -->
+        <div class="col-4">
+            {% include "add_posts.html" %}
+        <br><br>
+        </div>
     {% endif %}
 
+
+
+    <!-- БЛОК ПОСТОВ -->
   <div class="container posts">
     <div class="row">
       {% for post in posts %}

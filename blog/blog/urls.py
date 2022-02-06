@@ -17,7 +17,7 @@ from django.contrib import admin
 from django.urls import path, include
 
 from comments.views import add_comments, delete_comment
-from posts.views import add_post, main, post_view, delete_post
+from posts.views import main, post_view, delete_post
 from django.conf import settings
 from blog.views import register, authorization, logout_view
 
@@ -30,7 +30,6 @@ urlpatterns = [
     path('main/', main, name= 'home'),                                    # ДОМАШНЯЯ СТРАНИЦА
 
     # ПОСТЫ
-    path('posts/add/', add_post, name= 'post_add'),                       # СОЗДАНИЕ ПОСТА
     path('post/<str:slug>/', post_view, name= 'post_view'),               # ПРОСМОТР ОТДЕЛЬНОГО ПОСТА
     path("delete/<int:post_id>/", delete_post, name="delete_post"),       # УДАЛЕНИЕ ПОСТА
 
