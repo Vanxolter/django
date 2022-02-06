@@ -17,8 +17,8 @@
     </div>
 <br><br>
 
-    <div class="col-4">
-        {% include "add_comments.html" %}
+    <div class="container">
+        <a href="{% url "comments_add" %}" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Добавить коммент</a><br><br>
     </div>
 <br><br>
 
@@ -37,6 +37,10 @@
                 <p class="card-text">
                     {{ comment.body }}
                 </p>
+                {% if request.user == comment.name %}
+                    <a href="{% url "delete_comment" comment.id %}" class="btn btn-danger btn-sm" role="button"
+                       aria-pressed="true"> Удалить коммент</a>
+                {% endif %}
             </div>
           </div>
         </div>

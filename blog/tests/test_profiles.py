@@ -9,3 +9,5 @@ class TestProfiles:
         response = client.get("/main/")
         assert response.status_code == 200
 
+        response = client.get("/register/")
+        assert response.status_code == 200
