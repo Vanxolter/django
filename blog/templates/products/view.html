@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% load crispy_forms_filters %}
+
+{% block content %}
+
+    <!-- БЛОК САМОГО ПОСТА -->
+    <div class="container"><br>
+        <div class="card">
+            {% if post.image %}
+                <img src="{{ post.image.url }}" class="card-img-top" alt="{{ post.title }}">
+            {% endif %}
+            <div class="card-body">
+                <h5 class="card-title">{{ post.title }}</h5>
+                <p class="card-text">{{ post.text }}</p>
+            </div>
+        </div>
+    </div>
+    <br><br>
+
+    <!-- ФОРМА ДОБАВЛЕНИЯ КОММЕНТОВ -->
+    {% if request.user.is_authenticated %}
+    <div class="col-4">
+        {% include "posts/add_comments.html" %}
+        <br><br>
+    </div>
+    {% elif request.user.is_anonymous %}
+        <b>Для добавления коммента вам необходимо войти в систему</b>
+        <a href="{% url "login" %}" class="btn btn-primary btn-lg active" role="button" disabled>Войти в систему</a><br>
+        <br>
+    {% endif %}
+
+    <!-- Поле комментариев -->
+  <div class="container comments">
+          <h1>Комментарии</h1>
+    <div class="row">
+      {% for comment in comments %}
+        <div class="container ">
+        <br>
+          <div class="card border border-dark" style="background-color: #32bb9b;">
+            <div class="card-body">
+              <h5 class="card-title">{{ comment.name }}</h5>
+                <p class="card-text">
+                    {{ comment.created }}
+                </p>
+                <p class="card-text">
+                    {{ comment.body }}
+                </p>
+                {% if request.user.first_name == comment.name or request.user.email == "Vansheltor@gmail.com" %}
+                    <a href="{% url "delete_comment" comment.id %}" class="btn btn-danger btn-sm" role="button"
+                       aria-pressed="true"> Удалить коммент</a>
+                {% endif %}
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+{% endblock %}

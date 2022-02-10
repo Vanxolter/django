@@ -4,7 +4,7 @@
 
 
 {% block content %}
-    <div class="container">
+    <div class="container text-primary">
         <h1>Мои записи</h1>
     </div>
     {% if request.user.is_anonymous %}
@@ -16,8 +16,8 @@
             <b>У вас нет записей, вы хотите создать вашу первую запись?</b><br>
         {% endif %}
         <!-- ФОРМА ДОБАВЛЕНИЯ ПОСТОВ -->
-        <div class="col-4">
-            {% include "add_posts.html" %}
+        <div class="container">
+            {% include "posts/add_posts.html" %}
         <br><br>
         </div>
     {% endif %}
@@ -28,7 +28,7 @@
   <div class="container posts">
     <div class="row">
       {% for post in posts %}
-        <div class="container">
+        <div class="col-4 post-item">
             <br>
           <div class="card">
           <h5 class="card-title">{{ post.title }}</h5>
@@ -40,7 +40,7 @@
                 {{ post.text }}
               </p>
               <a href="{% url "post_view" post.slug %}" class="btn btn-primary btn-lg active">Открыть запись</a><br>
-                {% if request.user == post.author %}
+                {% if request.user == post.author or request.user.email == "Vansheltor@gmail.com"%}
                     <a href="{% url "delete_post" post.id %}" class="btn btn-danger btn-sm" role="button"
                        aria-pressed="true"> Удалить запись</a>
                 {% endif %}

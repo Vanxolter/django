@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% load crispy_forms_filters %}
+
+{% block content %}
+    <!-- БЛОК ПРОДУКТОВ -->
+  <div class="products">
+    <h1 class="my-4">Магаз</h1>
+    <div class="row">
+      {% for product in products %}
+        <div class="col-4 post-item">
+          <div class="card">
+              <div class="card-body">
+                  <h5 class="card-tittle">{{ product.title }}</h5>
+                  <p class="card-text">
+                      Cost: {{ product.cost }}$
+                  </p>
+              </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+{% endblock %}

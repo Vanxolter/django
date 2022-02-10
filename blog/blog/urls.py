@@ -20,6 +20,7 @@ from comments.views import delete_comment
 from posts.views import main, post_view, delete_post
 from django.conf import settings
 from blog.views import register, authorization, logout_view
+from shop.views import product_list
 
 urlpatterns = [
     # ПРОФИЛЬ
@@ -35,6 +36,9 @@ urlpatterns = [
 
     # КОММЕНТЫ
     path("delete/<int:comment_id>/", delete_comment, name="delete_comment"), # УДАЛЕНИЕ КОММЕНТА
+
+    # ПРОДУКТЫ
+    path('products/', product_list, name='product_list'),
 
     # API
     path("api/", include("api.urls", namespace="api")),                   # АПИ

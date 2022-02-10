@@ -18,19 +18,25 @@
     <br><br>
 
     <!-- ФОРМА ДОБАВЛЕНИЯ КОММЕНТОВ -->
+    {% if request.user.is_authenticated %}
     <div class="col-4">
-        {% include "add_comments.html" %}
+        {% include "posts/add_comments.html" %}
         <br><br>
     </div>
-
+    {% elif request.user.is_anonymous %}
+        <b>Для добавления коммента вам необходимо войти в систему</b>
+        <a href="{% url "login" %}" class="btn btn-primary btn-lg active" role="button" disabled>Войти в систему</a><br>
+        <br>
+    {% endif %}
 
     <!-- Поле комментариев -->
   <div class="container comments">
           <h1>Комментарии</h1>
     <div class="row">
       {% for comment in comments %}
-        <div class="container">
-          <div class="card">
+        <div class="container ">
+        <br>
+          <div class="card border border-dark" style="background-color: #32bb9b;">
             <div class="card-body">
               <h5 class="card-title">{{ comment.name }}</h5>
                 <p class="card-text">

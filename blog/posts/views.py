@@ -23,7 +23,7 @@ def main(request):
         form = PostForm()
     '''posts = Post.objects.filter(author=request.user).order_by("-id")''' # Если я хочу вдеть посты АВТОРИЗОВАННОГО юзера
     posts = Post.objects.all # Если я хочу видеть посты ВСЕХ юзеров
-    return render(request, "main.html", {"posts": posts, "form": form})
+    return render(request, "posts/main.html", {"posts": posts, "form": form})
 
 
 # ПРОСМОТР ОТДЕЛЬНОГО ПОСТА
@@ -38,7 +38,7 @@ def post_view(request, slug):
             return HttpResponseRedirect(request.path_info) # Обновляю эту же страницу
     else:
         form = CommentsForm()
-    return render(request, "view.html", {"post": post, "comments": comments, "form": form})
+    return render(request, "posts/view.html", {"post": post, "comments": comments, "form": form})
 
 
 # ОТДЕЛЬНАЯ СТРАНИЦА ДОБАВЛЕНИЯ ПОСТА (закоментил, т.к. форму добвил на главную)

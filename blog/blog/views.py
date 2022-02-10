@@ -20,6 +20,7 @@ def register(request):
             )
             user.set_password(form.cleaned_data['password'])
             user.save()
+            login(request, user)
             return redirect("home")
     else:
         form = RegisterForm()
