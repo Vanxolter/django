@@ -51,7 +51,7 @@ def post_view(request, slug):
                 return redirect("home")
         else:
             form = PostForm()
-        return render(request, "add_posts.html", {"form": form})
+        return render(request, "item.html", {"form": form})
     return redirect('home')'''
 
 

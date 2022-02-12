@@ -1,9 +1,0 @@
-{% load crispy_forms_filters %}
-
-
-<h1>Создать пост</h1>
-<form method="POST" class="post-form" enctype="multipart/form-data">
-    {% csrf_token %}
-    {{ form|crispy }}
-    <button type="submit" class="save btn btn-primary">Добавить</button>
-</form>

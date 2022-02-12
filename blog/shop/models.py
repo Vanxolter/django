@@ -2,13 +2,13 @@ from django.conf import settings
 from django.db import models
 
 
-STATUS_CHOICES = (("IN_STOCK", "In Stock"), ("OUT_OF_STOCK", "Out Of Stock"))
+STATUS_CHOICES = (("IN_STOCK", "Есть в наличии"), ("OUT_OF_STOCK", "Нет в наличии"))
 
 ORDER_BY_CHOICES = (
-    ("cost_asc", "Cost Asc"),
-    ("cost_desc", "Cost Desc"),
-    ("max_count", "Max Count"),
-    ("max_price", "Max Cost"),
+    ("cost_asc", "По возрастанию"),
+    ("cost_desc", "По убыванию"),
+    ("max_count", "Максимальное кол-во"),
+    ("max_price", "Максимальная цена"),
 )
 
 

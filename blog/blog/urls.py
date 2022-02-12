@@ -20,7 +20,7 @@ from comments.views import delete_comment
 from posts.views import main, post_view, delete_post
 from django.conf import settings
 from blog.views import register, authorization, logout_view
-from shop.views import product_list
+from shop.views import product_list, product_details_view
 
 urlpatterns = [
     # ПРОФИЛЬ
@@ -39,6 +39,7 @@ urlpatterns = [
 
     # ПРОДУКТЫ
     path('products/', product_list, name='product_list'),
+    path("product/<int:product_id>/", product_details_view, name="product_details_view"),
 
     # API
     path("api/", include("api.urls", namespace="api")),                   # АПИ

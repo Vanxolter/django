@@ -1,8 +1,0 @@
-{% load crispy_forms_filters %}
-
-<h2>Добавить коммент</h2>
-<form method="POST" class="comment-form">
-  {% csrf_token %}
-  {{ form|crispy }}
-  <button type="submit" class="save btn btn-primary">Save</button>
-</form>
