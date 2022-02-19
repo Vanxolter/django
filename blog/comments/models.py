@@ -4,7 +4,7 @@ from posts.models import Post
 
 
 class Commentaries(models.Model):
-    post = models.ForeignKey(Post, related_name='comments', on_delete = models.CASCADE)
+    post = models.ForeignKey(Post, related_name="comments", on_delete=models.CASCADE)
     name = models.CharField(settings.AUTH_USER_MODEL, max_length=200)
     email = models.EmailField()
     body = models.TextField()
@@ -13,7 +13,7 @@ class Commentaries(models.Model):
     active = models.BooleanField(default=True)
 
     class Meta:
-        ordering = ('created',)
+        ordering = ("created",)
 
     def __str__(self):
-        return f'Comment by {self.name} on {self.post}'
+        return f"Comment by {self.name} on {self.post}"

@@ -4,7 +4,9 @@ from comments.models import Commentaries
 
 
 class CommentsModelSerializer(serializers.HyperlinkedModelSerializer):
-    post = serializers.HyperlinkedRelatedField(view_name="api:post-detail", read_only=True)
+    post = serializers.HyperlinkedRelatedField(
+        view_name="api:post-detail", read_only=True
+    )
 
     class Meta:
         model = Commentaries

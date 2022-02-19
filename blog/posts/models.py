@@ -4,7 +4,9 @@ from django.contrib.auth.models import User
 
 
 class Post(models.Model):
-    author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete = models.CASCADE, related_name="posts")
+    author = models.ForeignKey(
+        settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="posts"
+    )
     title = models.CharField(max_length=200)
     image = models.ImageField(blank=True, null=True)
     slug = models.SlugField(unique=True)

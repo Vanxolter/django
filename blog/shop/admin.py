@@ -14,3 +14,4 @@ class ProductAdmin(admin.ModelAdmin):
     inlines = [
         PurchaseInline,
     ]
+    list_filter = ["status"]

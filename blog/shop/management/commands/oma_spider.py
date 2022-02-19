@@ -1,4 +1,3 @@
-
 import logging
 from pathlib import Path
 
@@ -21,7 +20,6 @@ class Command(BaseCommand):
     help = "Crawl OMA catalog"
 
     def handle(self, *args, **options):
-
         def crawler_results(signal, sender, item, response, spider):
             item["cost"] = int(item["cost"].split(",")[0])
             if item["image"]:
@@ -30,7 +28,9 @@ class Command(BaseCommand):
                     path = Path(item["image"])
                     open(settings.MEDIA_ROOT / path.name, "wb").write(response.content)
                     item["image"] = path.name
-            Product.objects.update_or_create(external_id=item["external_id"], defaults=item)
+            Product.objects.update_or_create(
+                external_id=item["external_id"], defaults=item
+            )
 
         dispatcher.connect(crawler_results, signal=signals.item_scraped)
 

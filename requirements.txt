@@ -7,3 +7,5 @@ crispy-bootstrap5==0.6
 djangorestframework==3.13.1
 ipython==8.0.1
 scrapy==2.5.1
+django-rq==2.5.1
+requests==2.27.1

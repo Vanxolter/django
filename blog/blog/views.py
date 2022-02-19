@@ -13,12 +13,12 @@ def register(request):
         if form.is_valid():
             logger.info(f"Пользователь {form.cleaned_data} зарегестрировался")
             user = User(
-                username=form.cleaned_data['email'],
-                email=form.cleaned_data['email'],
-                first_name=form.cleaned_data['first_name'],
-                last_name=form.cleaned_data['last_name']
+                username=form.cleaned_data["email"],
+                email=form.cleaned_data["email"],
+                first_name=form.cleaned_data["first_name"],
+                last_name=form.cleaned_data["last_name"],
             )
-            user.set_password(form.cleaned_data['password'])
+            user.set_password(form.cleaned_data["password"])
             user.save()
             login(request, user)
             return redirect("home")
@@ -28,20 +28,20 @@ def register(request):
 
 
 def authorization(request):
-    if '_signin' in request.POST:
+    if "_signin" in request.POST:
         form = Authorization(request.POST)
         if form.is_valid():
             logger.info(f"Пользователь {form.cleaned_data} авторизировался")
-            email = form.cleaned_data['email']
-            password = form.cleaned_data['password']
+            email = form.cleaned_data["email"]
+            password = form.cleaned_data["password"]
             user = authenticate(request, username=email, password=password)
             if user is not None:
                 if user.is_active:
                     login(request, user)
                     return redirect("home")
             else:
-                return HttpResponse('Аккаунта не существует')
-    elif '_reg' in request.POST:
+                return HttpResponse("Аккаунта не существует")
+    elif "_reg" in request.POST:
         return redirect("/register/")
     else:
         form = Authorization()

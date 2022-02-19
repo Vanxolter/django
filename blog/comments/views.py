@@ -14,7 +14,4 @@ def delete_comment(request, comment_id):
     comment = get_object_or_404(Commentaries, id=comment_id)
     logger.info(f"Note with id = {comment}, successfully deleted!")
     comment.delete()
-    return HttpResponseRedirect(request.path_info) # под вопросом НЕ ПРОХОДИТ УДАЛЕНИЕ
-
-
-
+    return HttpResponseRedirect(request.path_info)  # под вопросом НЕ ПРОХОДИТ УДАЛЕНИЕ

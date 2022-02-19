@@ -4,8 +4,10 @@ from shop.models import ORDER_BY_CHOICES
 
 
 class ProdFiltersForm(forms.Form):
-    cost__gt = forms.IntegerField(min_value= 0, label="Минимальная цена", required= False)
-    cost__lt = forms.IntegerField(min_value= 0, label="Максимальная цена", required= False)
+    cost__gt = forms.IntegerField(min_value=0, label="Минимальная цена", required=False)
+    cost__lt = forms.IntegerField(
+        min_value=0, label="Максимальная цена", required=False
+    )
     order_by = forms.ChoiceField(choices=ORDER_BY_CHOICES, required=False)
 
     def clean(self):
@@ -17,4 +19,10 @@ class ProdFiltersForm(forms.Form):
 
 
 class PurchaseFilterForm(forms.Form):
-    order_by = forms.ChoiceField(choices=(("-created_at", "Newest First"), ("created_at", "Oldest First"),), required=False)
+    order_by = forms.ChoiceField(
+        choices=(
+            ("-created_at", "Newest First"),
+            ("created_at", "Oldest First"),
+        ),
+        required=False,
+    )
