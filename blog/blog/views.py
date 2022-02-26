@@ -42,7 +42,7 @@ def authorization(request):
             else:
                 return HttpResponse("Аккаунта не существует")
     elif "_reg" in request.POST:
-        return redirect("/register/")
+        return redirect("/users/")
     else:
         form = Authorization()
         return render(request, "authorization.html", {"form": form})

@@ -27,7 +27,7 @@ urlpatterns = [
     # ПРОФИЛЬ
     path("admin/", admin.site.urls),
     path("", authorization, name="login"),  # АВТОРИЗАЦИЯ
-    path("register/", register, name="register"),  # РЕГИСТРАЦИЯ
+    path("users/", register, name="register"),  # РЕГИСТРАЦИЯ
     path("logouthtml/", logout_view, name="logout"),  # ВЫХОД ИЗ ПРОФИЛЯ
     path("main/", main, name="home"),  # ДОМАШНЯЯ СТРАНИЦА
     # ПОСТЫ

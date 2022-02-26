@@ -9,3 +9,5 @@ ipython==8.0.1
 scrapy==2.5.1
 django-rq==2.5.1
 requests==2.27.1
+faker>=13.2.0
+factory_boy>=3.2.0

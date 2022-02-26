@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/4.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
 """
-
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -25,7 +25,7 @@ SECRET_KEY = "django-insecure-_kw=%)w077yh5ud37egly)^ailxv_pu!^s2!v*fqqt8^^d_+5&
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "django_rq",
     "rest_framework",
+    "rest_framework.authtoken",
     "crispy_forms",
     "crispy_bootstrap5",
     "posts",
@@ -89,14 +90,14 @@ DATABASES = {
         "NAME": "django",
         "USER": "django",
         "PASSWORD": "django",
-        "HOST": "localhost",
+        "HOST": os.getenv("POSTGRES_HOST", "localhost"),
         "PORT": 5432,
     }
 }
 
 RQ_QUEUES = {
     "default": {
-        "HOST": "localhost",
+        "HOST": os.getenv("REDIS_HOST", "localhost"),
         "PORT": 6379,
         "DB": 0,
         "DEFAULT_TIMEOUT": 360,
@@ -173,4 +174,16 @@ LOGGING = {
         "handlers": ["console"],
         "level": "ERROR",
     },
+}
+
+
+# https://www.django-rest-framework.org/tutorial/quickstart/
+
+REST_FRAMEWORK = {
+   "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.PageNumberPagination",
+   "DEFAULT_AUTHENTICATION_CLASSES": [
+       "rest_framework.authentication.BasicAuthentication",
+       "rest_framework.authentication.SessionAuthentication",
+   ],
+   "PAGE_SIZE": 10,
 }
