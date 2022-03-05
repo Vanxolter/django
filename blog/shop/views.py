@@ -55,15 +55,9 @@ def purchase_list(request):
     filters_form = PurchaseFilterForm(request.GET)
 
     if filters_form.is_valid():
-        cost__gt = filters_form.cleaned_data["cost__gt"]
-        cost__lt = filters_form.cleaned_data["cost__lt"]
         order_by = filters_form.cleaned_data["order_by"]
 
-        products = filter_purchases(products,order_by)
-
-    paginator = Paginator(products, 30)
-    page_number = request.GET.get("page")
-    products = paginator.get_page(page_number)
+        purchases = filter_purchases(purchases, order_by)
 
     return render(
         request,
