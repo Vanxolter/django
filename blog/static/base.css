@@ -1,24 +1,24 @@
-* {
-    margin: 0px;
-    padding: 0px;
-    box-sizing: border-box;
+.full {
+    background-color: rgba(170,147,227,0.7);
+}
+
+.proditem {
+    background: linear-gradient(rgba(178, 162, 217, 0.7), rgba(72, 70, 70, 0.7));
+    width: 300px;
+    height: 600px;
+    color: rgba(37, 14, 101, 0.7);
     font-family: 'Poppins', sans-serif;
 }
 
-.max {
-        background: linear-gradient(rgba(190, 171, 171, 0.7), rgba(147, 110, 241, 0.7))
-}
-
 .navbar {
-    background: linear-gradient(rgba(220, 196, 196, 0.7), rgba(217, 199, 199, 0.7)), url("https://shwanoff.ru/wp-content/uploads/2018/05/programming-1280x720.jpg");
+    background: linear-gradient(rgba(178, 162, 217, 0.7), rgba(72, 70, 70, 0.7)), url("https://shwanoff.ru/wp-content/uploads/2018/05/programming-1280x720.jpg");
     background-size: cover;
 }
 
 .footer {
-    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(192, 163, 163, 0.7)), url("https://shwanoff.ru/wp-content/uploads/2018/05/programming-1280x720.jpg");
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(173, 155, 218, 0.7)), url("https://shwanoff.ru/wp-content/uploads/2018/05/programming-1280x720.jpg");
     background-size: cover;
 }
-
 
 .first {
     margin-top: 40px;
@@ -50,6 +50,7 @@
 .first p {
     font-size: 14px;
 }
+
 
 .second {
     margin-top: 40px;
@@ -111,6 +112,7 @@
 }
 
 
+
 .third {
     margin-top: 40px;
     margin-bottom: 50px;
@@ -164,7 +166,6 @@
     text-shadow: 1px 1px 20px rgb(185, 136, 136);
 }
 
-
 @media screen and (max-width: 1000px) {
     .first {
         text-align: center;
@@ -185,6 +186,13 @@
     }
 }
 
+
+.container h1 {
+    text-align: center;
+    margin-top: 100px;
+    margin-bottom: 100px;
+}
+
 .margin {
     margin-left: 20px;
 }
@@ -193,10 +201,4 @@
     height: 2px;
     background-color: rgb(206, 206, 206);
     width: 100%;
-}
-
-.container h1 {
-    text-align: center;
-    margin-top: 100px;
-    margin-bottom: 100px;
 }

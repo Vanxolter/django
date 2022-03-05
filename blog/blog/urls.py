@@ -30,7 +30,7 @@ urlpatterns = [
     path("", authorization, name="login"),  # АВТОРИЗАЦИЯ
     path("users/", register, name="register"),  # РЕГИСТРАЦИЯ
     path("logouthtml/", logout_view, name="logout"),  # ВЫХОД ИЗ ПРОФИЛЯ
-    path("main/", product_list, name="home"),  # ДОМАШНЯЯ СТРАНИЦА
+    path("main/",  main, name="home"),  # ДОМАШНЯЯ СТРАНИЦА
     # ПОСТЫ
     path("post/<str:slug>/", post_view, name="post_view"),  # ПРОСМОТР ОТДЕЛЬНОГО ПОСТА
     path("delete/<int:post_id>/", delete_post, name="delete_post"),  # УДАЛЕНИЕ ПОСТА
@@ -39,7 +39,7 @@ urlpatterns = [
         "delete/<int:comment_id>/", delete_comment, name="delete_comment"
     ),  # УДАЛЕНИЕ КОММЕНТА
     # ПРОДУКТЫ
-    path("products/", main, name="shop"),
+    path("products/", product_list, name="shop"),
     path(
         "product/<int:product_id>/", product_details_view, name="product_details_view"
     ),

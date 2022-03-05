@@ -49,7 +49,6 @@ def product_details_view(request, product_id):
 
 
 def purchase_list(request):
-    products = Product.objects.filter(purchase__user=request.user)
     purchases = Purchase.objects.filter(user_id=request.user)
     logger.info(f"{request.user} have - {purchases} ")
     filters_form = PurchaseFilterForm(request.GET)
