@@ -21,8 +21,8 @@ class ProdFiltersForm(forms.Form):
 class PurchaseFilterForm(forms.Form):
     order_by = forms.ChoiceField(
         choices=(
-            ("-created_at", "Newest First"),
-            ("created_at", "Oldest First"),
+            ("-created_at", "Сначала новые"),
+            ("created_at", "Сначала старые"),
         ),
         required=False,
     )

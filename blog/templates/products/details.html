@@ -11,6 +11,7 @@
     </div>
     <div class="col-8">
       <h3 class="mb-3">Cost: {{ product.cost }}</h3>
+    <h3 class="mb-3">ID: {{ product.id }}</h3>
       <h3 class="mb-3">Status: {{ product.get_status_display }}</h3>
       <div class="mb-3">
         <h3 class="mb-3">Description:</h3>
@@ -32,10 +33,9 @@
             </div>
           </div>
       </form>
-
       {% if product.purchases.exists %}
         <div>
-          <h3 class="my-3">Users previously purchased this product:</h3>
+          <h3 class="my-3">Юзер купил этот продукт:</h3>
           <ul>
             {% for purchase in product.purchases.all %}
               <li>{{ purchase.count }} item(s) by {{ purchase.user.username }} at {{ purchase.created_at }}</li>

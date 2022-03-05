@@ -56,7 +56,7 @@ def some_run_spider():
 def run_currency_bun_usd():
 
     # Ссылка с апи ключем
-    url = 'https://free.currconv.com/api/v7/convert?q=USD_BYN,BYN_USD&compact=ultra&apiKey=0962617823ff1e2471ed'
+    url = 'https://api.currconv.com/api/v7/convert?q=USD_BYN&compact=ultra&apiKey=0962617823ff1e2471ed'
 
     # Достаю данные через request
     response = requests.get(url)

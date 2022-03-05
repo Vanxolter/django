@@ -47,7 +47,7 @@ class Migration(migrations.Migration):
                     "product",
                     models.ForeignKey(
                         on_delete=django.db.models.deletion.CASCADE,
-                        related_name="purchases",
+                        related_name="purchase",
                         to="shop.product",
                     ),
                 ),
@@ -55,7 +55,7 @@ class Migration(migrations.Migration):
                     "user",
                     models.ForeignKey(
                         on_delete=django.db.models.deletion.CASCADE,
-                        related_name="purchases",
+                        related_name="purchase",
                         to=settings.AUTH_USER_MODEL,
                     ),
                 ),

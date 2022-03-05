@@ -23,7 +23,7 @@
         <div class="collapse navbar-collapse" id="navbarText">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href={% url "product_list" %}>Магазин <span class="sr-only"></span></a>
+                    <a class="nav-link" href={% url "shop" %}>Блог <span class="sr-only"></span></a>
                 </li>
                 <li class="nav-item active">
                     <a class="nav-link" href={% url "home" %}>Главная <span class="sr-only"></span></a>
@@ -42,12 +42,15 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'logout' %}">Выйти</a>
                 </li>
-                {% endif %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'purchaselist' %}">Мои покупки</a>
+                </li>
+            {% endif %}
             </ul>
             {% if request.user.is_authenticated %}
                 <span class="navbar-text">
-              Здравствуй {{ user.first_name }}
-            </span>
+                    Здравствуй {{ user.first_name }}
+                </span>
             {% endif %}
         </div>
     </nav>
