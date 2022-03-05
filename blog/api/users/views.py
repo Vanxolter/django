@@ -2,13 +2,13 @@
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from rest_framework import status
-from rest_framework.generics import CreateAPIView, RetrieveAPIView, GenericAPIView
+from rest_framework.generics import CreateAPIView, GenericAPIView
 from rest_framework.mixins import RetrieveModelMixin, ListModelMixin
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.viewsets import GenericViewSet
 
-from api.users.serializers import UserModelSerializer, UserLoginSerializer
+from api.users.serializers import UserModelSerializer, UserSerializer
 
 
 class UserViewSet(ListModelMixin, RetrieveModelMixin, GenericViewSet):
@@ -26,7 +26,7 @@ class UserCreateView(CreateAPIView):
     API endpoint that allows to create users.
     """
 
-    serializer_class = UserLoginSerializer
+    serializer_class = UserSerializer
     permission_classes = []
 
     def perform_create(self, serializer):
@@ -43,10 +43,10 @@ class UserLoginView(GenericAPIView):
     API endpoint that allows to login users.
     """
 
-    serializer_class = UserLoginSerializer
+    serializer_class = UserSerializer
     permission_classes = []
 
-    def login(self, request, *args, **kwargs):
+    def post(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.POST)
         serializer.is_valid(raise_exception=True)
 
@@ -69,7 +69,7 @@ class UserLogoutView(GenericAPIView):
 
     permission_classes = []
 
-    def logout(self, request, *args, **kwargs):
+    def post(self, request, *args, **kwargs):
         if request.user.is_authenticated:
             logout(request)
         return Response()

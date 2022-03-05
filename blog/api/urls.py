@@ -20,11 +20,7 @@ urlpatterns = [
     path("", include(router.urls)),
     path("register/", UserCreateView.as_view(), name="reg"),
     path("login/", UserLoginView.as_view(), name="login"),
-    path(
-        "products/<int:product_id>/purchase/",
-        PurchaseCreateView.as_view(),
-        name="purchase",
-    ),
+    path("products/<int:product_id>/purchase/", PurchaseCreateView.as_view(), name="purchase",),
     path("logout/", UserLogoutView.as_view(), name="logout"),
     path("api-auth/", include("rest_framework.urls", namespace="rest_framework")),
 ]
