@@ -1,6 +1,5 @@
 import logging
 from pathlib import Path
-from time import sleep
 
 import requests
 from django.db.models import F
@@ -12,7 +11,7 @@ from scrapy.utils.project import get_project_settings
 
 from blog import settings
 from shop.models import Product
-from shop.spyders import OmaSpider
+from shop.spiders.spyders import OmaSpider
 from scrapy import signals
 logger = logging.getLogger(__name__)
 
@@ -64,7 +63,7 @@ def run_currency_bun_usd():
 
     # Достаю из дикта курс доллара
     coefficient = data.get("USD_BYN")
-    Product.objects.all().update(price_byn=F('cost') * coefficient)
+    Product.objects.all().update(price_byn=F('cost') + 1 * coefficient)
     '''for step in Product.objects.all():
         cost = step.cost
         Product.objects.filter(external_id= step.external_id).update(price_byn= coefficient * cost)'''
